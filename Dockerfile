@@ -1,8 +1,8 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:2.1.505 AS builder
+FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim
 
-# Install mono
-ENV MONO_VERSION 5.18.0.225
+ENV MONO_VERSION 6.12.0.107
 
+# FROM https://github.com/mono/docker/blob/main/6.12.0.107/slim/Dockerfile
 RUN apt-get update \
   && apt-get install -y --no-install-recommends gnupg dirmngr \
   && rm -rf /var/lib/apt/lists/* \
@@ -14,13 +14,11 @@ RUN apt-get update \
   && apt-key list | grep Xamarin \
   && apt-get purge -y --auto-remove gnupg dirmngr
 
-RUN echo "deb http://download.mono-project.com/repo/debian stable-stretch/snapshots/$MONO_VERSION main" > /etc/apt/sources.list.d/mono-official-stable.list \
+RUN echo "deb http://download.mono-project.com/repo/debian stable-buster/snapshots/$MONO_VERSION main" > /etc/apt/sources.list.d/mono-official-stable.list \
   && apt-get update \
   && apt-get install -y mono-runtime \
   && rm -rf /var/lib/apt/lists/* /tmp/*
-
+  
 RUN apt-get update \
   && apt-get install -y binutils curl mono-devel ca-certificates-mono fsharp mono-vbnc nuget referenceassemblies-pcl \
   && rm -rf /var/lib/apt/lists/* /tmp/*
-
-WORKDIR /sln

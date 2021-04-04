@@ -1,6 +1,8 @@
-This is an image based on https://hub.docker.com/r/microsoft/dotnet/
-that includes the .NET Core 2.1 SDK and Mono. 
+Inspired on https://github.com/andrewlock/docker-dotnet-mono
 
-Including Mono allows multi-targeting full framework apps in your .NET Core libraries, as well as using Cake to build your apps [as described here](https://andrewlock.net/building-asp-net-core-apps-using-cake-in-docker/).
+This is an image based on mcr.microsoft.com/dotnet/sdk:5.0-buster-slim with .Net5.0 SDK and Mono 6.12.
 
-Image available on Docker Hub: https://registry.hub.docker.com/u/andrewlock/dotnet-mono/
+Including Mono allows multi-targeting full framework apps in your .NET Core libraries, as well as using Cake to build your apps as described here.
+
+Image available on Docker Hub: https://hub.docker.com/r/brebete/dotnet-mono
+
