@@ -11,13 +11,13 @@ RUN apt-get update \
   && gpg --batch --export --armor 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF > /etc/apt/trusted.gpg.d/mono.gpg.asc \
   && gpgconf --kill all   && rm -rf "$GNUPGHOME" \
   && apt-key list | grep Xamarin \
-  && apt-get purge -y --auto-remove gnupg dirmngr \
+  && apt-get purge -y --auto-remove gnupg dirmngr
 
 RUN echo "deb https://download.mono-project.com/repo/debian stable-buster/snapshots/$MONO_VERSION main" > /etc/apt/sources.list.d/mono-official-stable.list \
   && apt-get update \
   && apt-get install -y mono-runtime \   
-  && rm -rf /var/lib/apt/lists/* /tmp/* \
+  && rm -rf /var/lib/apt/lists/* /tmp/*
   
 RUN apt-get update \
 && apt-get install -y binutils curl mono-devel ca-certificates-mono fsharp mono-vbnc nuget referenceassemblies-pcl \
-&& rm -rf /var/lib/apt/lists/* /tmp/* \
+&& rm -rf /var/lib/apt/lists/* /tmp/*
